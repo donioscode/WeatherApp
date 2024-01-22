@@ -23,8 +23,10 @@ class AddWeatherViewController: UIViewController {
             return
         }
         
-        networking.getWeatherData(cityName: cityName) { data in
-             print(data)
+        networking.getWeatherData(cityName: cityName) { weatherData in
+            if let weatherData = weatherData {
+                print(weatherData)
+            }
         }
     }
 }
