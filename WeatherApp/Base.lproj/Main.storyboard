@@ -110,7 +110,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="avh-i0-23K">
                             <connections>
-                                <segue destination="e1t-Da-z37" kind="presentation" id="cd8-Ll-ED0"/>
+                                <segue destination="e1t-Da-z37" kind="presentation" identifier="AddWeatherViewController" id="cd8-Ll-ED0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
