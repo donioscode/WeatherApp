@@ -196,6 +196,9 @@
                                 <rect key="frame" x="10" y="151" width="373" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="e1t-Da-z37" eventType="touchUpInside" id="Aq2-5R-jT9"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Zy6-W4-bfq"/>
@@ -209,6 +212,9 @@
                             <constraint firstItem="7wG-7f-OcN" firstAttribute="top" secondItem="Zy6-W4-bfq" secondAttribute="top" constant="102" id="w7S-Yn-BbO"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cityTF" destination="7wG-7f-OcN" id="e4S-1F-GqC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E2C-8Z-l40" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
