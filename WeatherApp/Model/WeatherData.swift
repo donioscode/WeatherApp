@@ -29,6 +29,7 @@ import Foundation
 struct WeatherData: Codable {
     let weather: [Weather]
     let main: MainWeather?
+    let name: String
     
 }
 
