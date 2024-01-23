@@ -36,6 +36,7 @@ class WeatherListViewController: UIViewController, AddWeatherDelegate {
     func sendWeather(data: WeatherData) {
         print(data)
         weathersData.append(data)
+        dataSourse.updateItems(weathersData)
         weatherTB.reloadData()
     }
 }

@@ -200,7 +200,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPG-Tg-BfR">
                                 <rect key="frame" x="10" y="207" width="373" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Save"/>
                                 <connections>
                                     <action selector="saveButtonPressed:" destination="e1t-Da-z37" eventType="touchUpInside" id="Aq2-5R-jT9"/>
                                 </connections>
