@@ -11,16 +11,16 @@
         <!--Settings View Controller-->
         <scene sceneID="5tt-Dt-eoj">
             <objects>
-                <viewController id="Veb-P6-q6I" customClass="SettingsViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settingsCell" id="Veb-P6-q6I" customClass="SettingsViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iap-7g-V7K">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="l4b-rp-T5E">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="6gL-rT-zzL">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="settingsCell" id="6gL-rT-zzL">
                                         <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6gL-rT-zzL" id="LGt-Lm-54P">
@@ -40,10 +40,14 @@
                             <constraint firstItem="gmO-9W-dK9" firstAttribute="trailing" secondItem="l4b-rp-T5E" secondAttribute="trailing" id="tYe-gt-UAG"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="4sS-po-GgG"/>
+                    <connections>
+                        <outlet property="settingsTB" destination="l4b-rp-T5E" id="d2l-r2-zDx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H7B-va-hRY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1822" y="-805"/>
+            <point key="canvasLocation" x="1949" y="-856"/>
         </scene>
         <!--Weather App-->
         <scene sceneID="tne-QT-ifu">
@@ -107,7 +111,7 @@
                     <navigationItem key="navigationItem" title="Weather App" id="bMc-mc-MHO">
                         <barButtonItem key="leftBarButtonItem" image="gear" catalog="system" id="mkJ-0q-oBJ">
                             <connections>
-                                <segue destination="Veb-P6-q6I" kind="presentation" id="i5T-VY-XF3"/>
+                                <segue destination="Veb-P6-q6I" kind="show" identifier="SettingsViewController" id="4Rl-dH-gM2"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="avh-i0-23K">

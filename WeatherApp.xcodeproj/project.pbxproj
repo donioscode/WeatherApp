@@ -79,8 +79,6 @@
 				9176A9982B5EDC53005D9312 /* Model */,
 				9176A9992B5EDC60005D9312 /* Networking */,
 				9176A9902B5EDA83005D9312 /* ViewControllers */,
-				9176A97C2B5ED385005D9312 /* AppDelegate.swift */,
-				9176A97E2B5ED385005D9312 /* SceneDelegate.swift */,
 				9184210F2B5FD9120089614F /* Helpers */,
 				9176A9822B5ED385005D9312 /* Main.storyboard */,
 				9176A9852B5ED387005D9312 /* Assets.xcassets */,
@@ -105,6 +103,8 @@
 		9176A9972B5EDC4C005D9312 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				9176A97C2B5ED385005D9312 /* AppDelegate.swift */,
+				9176A97E2B5ED385005D9312 /* SceneDelegate.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
