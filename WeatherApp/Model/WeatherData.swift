@@ -26,24 +26,75 @@ import Foundation
 //  "grnd_level": 933
 //},
 
-struct WeatherData: Codable {
-    let weather: [Weather]
-    let main: MainWeather?
-    let name: String
+struct WeatherData: Decodable {
+//    let weather: [Weather]
+    let currentTemperature: MainWeather?
+    let name: Dynamic<String>
+    
+    private enum CodingKeys: String, CodingKey {
+        case name
+//        case weather
+        case currentTemperature = "main"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = Dynamic(try container.decode(String.self, forKey: .name))
+        currentTemperature = try container.decode(MainWeather.self, forKey: .currentTemperature)
+    }
     
 }
 
-struct Weather: Codable {
+struct Weather: Decodable {
     let id: Int?
     let main: String?
     let description: String?
     
 }
 
-struct MainWeather: Codable {
-    let temp: Double?
-    let feels_like: Double?
-    let temp_min: Double?
-    let temp_max: Double?
+struct MainWeather: Decodable {
+    let temperature: Dynamic<Double>
+    let feelsLike: Dynamic<Double>
+    let temperatureMin: Dynamic<Double>
+    let temperatureMax: Dynamic<Double>
+    
+    init(from decoder: Decoder) throws {
+         let container = try decoder.container(keyedBy: CodingKeys.self)
+         temperature = Dynamic(try container.decode(Double.self, forKey: .temperature))
+         temperatureMin = Dynamic(try container.decode(Double.self, forKey: .temperatureMin))
+         temperatureMax = Dynamic(try container.decode(Double.self, forKey: .temperatureMax))
+         feelsLike = Dynamic(try container.decode(Double.self, forKey: .feelsLike))
+    }
+    
+    private enum CodingKeys: String , CodingKey {
+        case temperature = "temp"
+        case temperatureMin = "temp_min"
+        case temperatureMax = "temp_max"
+        case feelsLike = "feels_like"
+    }
+}
+
+class Dynamic<T>: Decodable where T: Decodable {
+    typealias Listener = (T) -> ()
+    var listener: Listener?
+    
+    var value: T {
+        didSet {
+            listener?(value)
+        }
+    }
+    
+    func bind(listener: @escaping Listener) {
+        self.listener = listener
+        self.listener?(value)
+    }
+    
+    init(_ value: T) {
+        self.value = value
+    }
+    
+    private enum CodingKeys: CodingKey {
+        case value
+    }
 }
                         
