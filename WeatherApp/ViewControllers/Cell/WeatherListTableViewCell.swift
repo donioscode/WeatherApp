@@ -23,8 +23,8 @@ class WeatherListTableViewCell: UITableViewCell {
     }
     
     func setData(data: WeatherData) {
-        cityNameLB.text = data.name
-        temperatureLB.text = "\(data.main?.temp ?? 0.0)"
+        cityNameLB.text = data.name.value
+        temperatureLB.text = "\(data.currentTemperature?.temperature.value ?? 0.0)"
     }
 
 }

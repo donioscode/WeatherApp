@@ -11,11 +11,14 @@ class WeatherListViewController: UIViewController, AddWeatherDelegate {
    
     @IBOutlet weak var weatherTB: UITableView!
     private lazy var weathersData: [WeatherData] = []
+    private  var  dataSourse: TableViewDataSourse<WeatherListTableViewCell,WeatherData>!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         weatherTB.delegate = self
-        weatherTB.dataSource = self
+        dataSourse = TableViewDataSourse(cellIdentifier: "weatherCell", items: weathersData, configureCell: { cell, data in cell.setData(data: data)})
+        weatherTB.dataSource = dataSourse
         // Do any additional setup after loading the view.
     }
 
@@ -37,15 +40,6 @@ class WeatherListViewController: UIViewController, AddWeatherDelegate {
     }
 }
 
-extension WeatherListViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath) as!
-        WeatherListTableViewCell
-        cell.setData(data: weathersData[indexPath.row])
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weathersData.count
-    }
+extension WeatherListViewController: UITableViewDelegate {
+
 }
