@@ -13,6 +13,9 @@ class WeatherListViewController: UIViewController, AddWeatherDelegate {
     private lazy var weathersData: [WeatherData] = []
     private  var  dataSourse: TableViewDataSourse<WeatherListTableViewCell,WeatherData>!
     
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +25,9 @@ class WeatherListViewController: UIViewController, AddWeatherDelegate {
         // Do any additional setup after loading the view.
     }
 
+    
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddWeatherViewController" {
@@ -40,6 +46,9 @@ class WeatherListViewController: UIViewController, AddWeatherDelegate {
         weatherTB.reloadData()
     }
 }
+
+
+
 
 extension WeatherListViewController: UITableViewDelegate {
 
