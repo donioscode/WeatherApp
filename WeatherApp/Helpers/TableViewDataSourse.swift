@@ -28,13 +28,22 @@ class TableViewDataSourse<CellType, Data>: NSObject, UITableViewDataSource where
         return items.count
     }
     
+    
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? CellType
         else {
             fatalError("Cell not found ")
         }
+        
         let data = items[indexPath.row]
         configureCell(cell,data)
         return cell
     }
+    
+    
+    
+    
 }
+
