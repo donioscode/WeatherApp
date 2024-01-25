@@ -19,7 +19,6 @@ class WeatherListViewController: UIViewController, AddWeatherDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        weatherTB.delegate = self
         dataSourse = TableViewDataSourse(cellIdentifier: "weatherCell", items: weathersData, configureCell: { cell, data in cell.setData(data: data)})
         weatherTB.dataSource = dataSourse
         // Do any additional setup after loading the view.
@@ -50,6 +49,8 @@ class WeatherListViewController: UIViewController, AddWeatherDelegate {
 
 
 
-extension WeatherListViewController: UITableViewDelegate {
-
+extension WeatherListViewController: SettingsDelegate {
+    func settingsDdone(vm: SettingsViewModel) {
+        
+    }
 }

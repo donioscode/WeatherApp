@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+
+class WeatherListViewModel {
+    private (set) var weatherData: [WeatherData] = []
+    
+    
+}
