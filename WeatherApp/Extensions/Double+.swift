@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+extension Double {
+    var formatTemp: String {
+        return String(format: "%.0f", self)
+    }
+}
