@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol SettingsDelegate {
+    func settingsDdone(vm: SettingsViewModel)
+}
+
 class SettingsViewController: UIViewController {
     
     private var _settingsViewModel = SettingsViewModel()
+    var delegate: SettingsDelegate?
 
 
     @IBOutlet weak var settingsTB: UITableView!
@@ -20,6 +25,13 @@ class SettingsViewController: UIViewController {
         settingsTB.dataSource = self
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let delegate = delegate {
+            delegate.settingsDdone(vm: _settingsViewModel)
+        }
     }
 }
 
