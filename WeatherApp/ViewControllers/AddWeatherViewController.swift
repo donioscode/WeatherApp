@@ -28,7 +28,7 @@ class AddWeatherViewController: UIViewController {
             return
         }
         
-        guard let weatherURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(cityName)&appid=144dcdc9ff9c511f99fc9f54c5b26a99")else {return}
+        guard let weatherURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(cityName)&appid=144dcdc9ff9c511f99fc9f54c5b26a99&units=imperial")else {return}
         
         let weatherResource = Resourse<WeatherData>(url: weatherURL) { data in
             let decodeWeatherData = try? JSONDecoder().decode(WeatherData.self, from: data)
