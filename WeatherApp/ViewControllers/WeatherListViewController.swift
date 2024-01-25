@@ -22,6 +22,7 @@ class WeatherListViewController: UIViewController, AddWeatherDelegate {
         dataSourse = TableViewDataSourse(cellIdentifier: "weatherCell", items: dbweather, configureCell: { cell,
             data in cell.setData(data: data)})
         weatherTB.dataSource = dataSourse
+        weatherTB.delegate = self
         fetchFromDB()
         // Do any additional setup after loading the view.
     }
@@ -72,9 +73,20 @@ class WeatherListViewController: UIViewController, AddWeatherDelegate {
     }
 }
 
+ extension WeatherListViewController: UITableViewDelegate {
+     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+         
+         return UISwipeActionsConfiguration(actions: [])
+     }
+     
+     
+}
+
 extension WeatherListViewController: SettingsDelegate {
     func settingsDdone(vm: SettingsViewModel) {
         weatherViewModel.updateUnit(to: vm.selectedUnit)
         weatherTB.reloadData()
     }
 }
+
+
