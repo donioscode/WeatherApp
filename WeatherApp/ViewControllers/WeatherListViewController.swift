@@ -71,19 +71,37 @@ class WeatherListViewController: UIViewController, AddWeatherDelegate {
         }
         dataSourse.updateItems(dbweather)
     }
+    
+    func deleteWeather(data: Entity) {
+        context.delete(data)
+        
+        do {
+            try self.context.save()
+        } catch {
+            let error = error as NSError
+            print("Error occured when deleting data \(error.localizedDescription)")
+        }
+    }
 }
 
  extension WeatherListViewController: UITableViewDelegate {
-     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-         
-         return UISwipeActionsConfiguration(actions: [])
+     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+         let deleteData = deleteData(at: indexPath)
+         return UISwipeActionsConfiguration(actions: [deleteData])
      }
      
      func deleteData (at index: IndexPath ) -> UIContextualAction {
          let action = UIContextualAction(style: .destructive, title: "Delete") { action, view,completion in
-             
+             let data = self.dbweather [index.row]
+             self.dbweather.remove(at: index.row)
+             self.dataSourse.updateItems(self.dbweather)
+             self.weatherTB.reloadData()
+             self.deleteWeather(data: data)
+             completion(true)
+             action.backgroundColor = .red
          }
-     } return action
+         return action
+     }
 }
 
 extension WeatherListViewController: SettingsDelegate {
