@@ -12,13 +12,17 @@ class WeatherListViewController: UIViewController, AddWeatherDelegate {
     @IBOutlet weak var weatherTB: UITableView!
     
     private var weatherViewModel = WeatherListViewModel()
-    private  var  dataSourse: TableViewDataSourse<WeatherListTableViewCell,WeatherData>!
+    private  var  dataSourse: TableViewDataSourse<WeatherListTableViewCell,Entity>!
+    private var dbweather: [Entity] = []
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSourse = TableViewDataSourse(cellIdentifier: "weatherCell", items: weatherViewModel.weatherData, configureCell: { cell, data in cell.setData(data: data)})
+        dataSourse = TableViewDataSourse(cellIdentifier: "weatherCell", items: dbweather, configureCell: { cell,
+            data in cell.setData(data: data)})
         weatherTB.dataSource = dataSourse
+        fetchFromDB()
         // Do any additional setup after loading the view.
     }
 
@@ -40,9 +44,31 @@ class WeatherListViewController: UIViewController, AddWeatherDelegate {
     
     func sendWeather(data: WeatherData) {
         print(data)
-        weatherViewModel.addWeather(data: data)
-        dataSourse.updateItems(weatherViewModel.weatherData)
+        save2DB(data: data)
+        fetchFromDB()
+        
         weatherTB.reloadData()
+    }
+    
+    func save2DB(data: WeatherData) {
+        let weather = Entity(context: self.context)
+        weather.name = data.name.value
+        weather.temperature = data.currentTemperature?.temperature.value ?? 0.0
+        
+        do {
+            try self.context.save()
+        } catch {
+            print("Error occured in saving data")
+        }
+    }
+    
+    func fetchFromDB() {
+        do {
+            self.dbweather = try context.fetch(Entity.fetchRequest())
+        } catch {
+            
+        }
+        dataSourse.updateItems(dbweather)
     }
 }
 

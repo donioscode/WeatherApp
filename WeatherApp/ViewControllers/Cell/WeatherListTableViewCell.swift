@@ -22,9 +22,9 @@ class WeatherListTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setData(data: WeatherData) {
-        cityNameLB.text = data.name.value
-        temperatureLB.text = "\(data.currentTemperature?.temperature.value.formatTemp ?? "")"
+    func setData(data: Entity) {
+        cityNameLB.text = data.name
+        temperatureLB.text = "\(data.temperature)"
     }
 
 }
