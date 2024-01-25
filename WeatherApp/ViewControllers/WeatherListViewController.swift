@@ -79,7 +79,11 @@ class WeatherListViewController: UIViewController, AddWeatherDelegate {
          return UISwipeActionsConfiguration(actions: [])
      }
      
-     
+     func deleteData (at index: IndexPath ) -> UIContextualAction {
+         let action = UIContextualAction(style: .destructive, title: "Delete") { action, view,completion in
+             
+         }
+     } return action
 }
 
 extension WeatherListViewController: SettingsDelegate {
