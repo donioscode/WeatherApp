@@ -41,9 +41,5 @@ class TableViewDataSourse<CellType, Data>: NSObject, UITableViewDataSource where
         configureCell(cell,data)
         return cell
     }
-    
-    
-    
-    
 }
 

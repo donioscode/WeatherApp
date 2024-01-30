@@ -24,7 +24,7 @@ class WeatherListTableViewCell: UITableViewCell {
     
     func setData(data: Entity) {
         cityNameLB.text = data.name
-        temperatureLB.text = "\(data.temperature)"
+        temperatureLB.text = "\(data.temperature) °"
     }
 
 }

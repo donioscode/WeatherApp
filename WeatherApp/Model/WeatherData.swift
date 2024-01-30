@@ -14,42 +14,56 @@ import Foundation
 //    "icon": "10d"
 //  }
 //],
-//"base": "stations",
+
 //"main": {
 //  "temp": 298.48,
 //  "feels_like": 298.74,
 //  "temp_min": 297.56,
 //  "temp_max": 300.05,
-//  "pressure": 1015,
-//  "humidity": 64,
-//  "sea_level": 1015,
-//  "grnd_level": 933
-//},
+
 
 struct WeatherData: Decodable {
-//    let weather: [Weather]
+//    let weather: HeadWeather?
     let currentTemperature: MainWeather?
     let name: Dynamic<String>
     
     private enum CodingKeys: String, CodingKey {
         case name
-//        case weather
+//        case weather = "weather"
         case currentTemperature = "main"
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = Dynamic(try container.decode(String.self, forKey: .name))
+//        weather =  try container.decode(HeadWeather.self, forKey: .weather)
         currentTemperature = try container.decode(MainWeather.self, forKey: .currentTemperature)
     }
     
+    
 }
 
-struct Weather: Decodable {
-    let id: Int?
-    let main: String?
-    let description: String?
+
+
+struct HeadWeather: Decodable {
+    let id: Dynamic<Int>
+    let main: Dynamic<String>
+    let description: Dynamic<String>
     
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = Dynamic(try container.decode(Int.self, forKey: .id))
+        main = Dynamic(try container.decode(String.self, forKey: .main))
+        description = Dynamic(try container.decode(String.self, forKey: .description))
+      
+    }
+    
+    private enum CodingKeys: String , CodingKey {
+        case id = "id"
+        case main = "main"
+        case description = "description"
+       
+    }
 }
 
 struct MainWeather: Decodable {

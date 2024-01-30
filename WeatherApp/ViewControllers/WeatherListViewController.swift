@@ -8,7 +8,7 @@
 import UIKit
 
 class WeatherListViewController: UIViewController, AddWeatherDelegate {
-   
+    
     @IBOutlet weak var weatherTB: UITableView!
     
     private var weatherViewModel = WeatherListViewModel()
@@ -16,7 +16,6 @@ class WeatherListViewController: UIViewController, AddWeatherDelegate {
     private var dbweather: [Entity] = []
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSourse = TableViewDataSourse(cellIdentifier: "weatherCell", items: dbweather, configureCell: { cell,
@@ -54,6 +53,7 @@ class WeatherListViewController: UIViewController, AddWeatherDelegate {
     func save2DB(data: WeatherData) {
         let weather = Entity(context: self.context)
         weather.name = data.name.value
+        
         weather.temperature = data.currentTemperature?.temperature.value ?? 0.0
         
         do {
@@ -61,13 +61,13 @@ class WeatherListViewController: UIViewController, AddWeatherDelegate {
         } catch {
             print("Error occured in saving data")
         }
-    }
+    }  
     
     func fetchFromDB() {
         do {
             self.dbweather = try context.fetch(Entity.fetchRequest())
         } catch {
-            
+
         }
         dataSourse.updateItems(dbweather)
     }
